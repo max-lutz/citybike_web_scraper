@@ -77,7 +77,7 @@ def get_country_codes():
     return list(countries)
 
 
-def display_placeholder(placeholder, progress, total):
+def display_placeholder(placeholder, df, progress, total):
     with placeholder.container():
         spacer1, row_1, spacer_2 = st.columns((.1, ROW, .1))
         with row_1:
@@ -141,8 +141,9 @@ if (run_web_scraper):
             rows.append([country, city, company, name, id, api_endpoint, n_stations, n_empty_slots, n_bikes])
             df = pd.DataFrame(rows, columns=['country', 'city', 'company', 'name', 'id',
                                              'api_endpoint', 'n_stations', 'n_empty_slots', 'n_bikes'])
+            df['total_slots'] = df['n_empty_slots'] + df['n_bikes']
 
-            display_placeholder(placeholder, progress, len(dict['networks']))
+            display_placeholder(placeholder, df, progress, len(dict['networks']))
 
     placeholder.empty()
     display_placeholder(placeholder, progress+1, len(dict['networks']))
