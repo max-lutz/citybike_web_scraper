@@ -146,4 +146,4 @@ if (run_web_scraper):
             display_placeholder(placeholder, df, progress, len(dict['networks']))
 
     placeholder.empty()
-    display_placeholder(placeholder, progress+1, len(dict['networks']))
+    display_placeholder(placeholder, df, progress+1, len(dict['networks']))
